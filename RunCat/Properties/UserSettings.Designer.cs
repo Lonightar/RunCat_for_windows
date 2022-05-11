@@ -61,5 +61,17 @@ namespace RunCat.Properties {
                 this["Speed"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isCPUScalingReversed {
+            get {
+                return ((bool)(this["isCPUScalingReversed"]));
+            }
+            set {
+                this["isCPUScalingReversed"] = value;
+            }
+        }
     }
 }

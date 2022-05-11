@@ -53,6 +53,7 @@ namespace RunCat
         private ToolStripMenuItem themeMenu;
         private ToolStripMenuItem startupMenu;
         private ToolStripMenuItem runnerSpeedLimit;
+        private ToolStripMenuItem reverseMenu;
         private NotifyIcon notifyIcon;
         private string runner = "";
         private int current = 0;
@@ -141,6 +142,12 @@ namespace RunCat
                 }
             });
 
+            reverseMenu = new ToolStripMenuItem("Reverse CPU Scaling", null, SetCPUTick);
+            if (UserSettings.Default.isCPUScalingReversed == true)
+            {
+                reverseMenu.Checked = true;
+            }
+
             ContextMenuStrip contextMenuStrip = new ContextMenuStrip(new Container());
             contextMenuStrip.Items.AddRange(new ToolStripItem[]
             {
@@ -148,6 +155,7 @@ namespace RunCat
                 themeMenu,
                 startupMenu,
                 runnerSpeedLimit,
+                reverseMenu,
                 new ToolStripMenuItem("Exit", null, Exit)
             });
 
@@ -318,6 +326,12 @@ namespace RunCat
                 rKey.Close();
             }
         }
+        
+        private void SetCPUTick(object sender, EventArgs e)
+        {
+            reverseMenu.Checked = !reverseMenu.Checked;
+            UserSettings.Default.isCPUScalingReversed = reverseMenu.Checked;
+        }
 
         private void Exit(object sender, EventArgs e)
         {
@@ -363,9 +377,20 @@ namespace RunCat
             interval = cpuUsage.NextValue();
             notifyIcon.Text = $"CPU: {interval:f1}%";
             interval = 200.0f / (float)Math.Max(1.0f, Math.Min(20.0f, interval / 5.0f));
+            
+            if (UserSettings.Default.isCPUScalingReversed == true)
+            {
+                interval = (float)Math.Max(10.0f, 2 * interval);
+            }
+            else
+            {
+                interval = 200.0f / (float)Math.Max(1.0f, Math.Min(20.0f, interval / 5.0f));
+            }
+
             _ = interval;
             CPUTickSpeed();
         }
+
         private void ObserveCPUTick(object sender, EventArgs e)
         {
             CPUTick();

@@ -9,20 +9,19 @@
 //------------------------------------------------------------------------------
 
 namespace RunCat.Properties {
-    
-    
+
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
     internal sealed partial class UserSettings : global::System.Configuration.ApplicationSettingsBase {
-        
+
         private static UserSettings defaultInstance = ((UserSettings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new UserSettings())));
-        
+
         public static UserSettings Default {
             get {
                 return defaultInstance;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("cat")]
@@ -34,7 +33,7 @@ namespace RunCat.Properties {
                 this["Runner"] = value;
             }
         }
-        
+
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
@@ -50,14 +49,11 @@ namespace RunCat.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("default")]
-        public string Speed
-        {
-            get
-            {
+        public string Speed {
+            get {
                 return ((string)(this["Speed"]));
             }
-            set
-            {
+            set {
                 this["Speed"] = value;
             }
         }

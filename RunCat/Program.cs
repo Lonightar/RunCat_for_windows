@@ -331,13 +331,12 @@ namespace RunCat {
         private void CPUTick() {
             interval = cpuUsage.NextValue();
             notifyIcon.Text = $"CPU: {interval:f1}%";
-            interval = 200.0f / (float)Math.Max(1.0f, Math.Min(20.0f, interval / 5.0f));
-
+            // interval = 200.0f / (float)Math.Max(1.0f, Math.Min(20.0f, interval / 5.0f));
             if (UserSettings.Default.isCPUScalingReversed == true) {
-                interval = (float)Math.Max(10.0f, 2 * interval);
+                interval = 200.0f / (float)Math.Max(1.0f, Math.Min(20.0f, interval / 5.0f));
             }
             else {
-                interval = 200.0f / (float)Math.Max(1.0f, Math.Min(20.0f, interval / 5.0f));
+                interval = (float)Math.Max(10.0f, 2 * interval);
             }
 
             _ = interval;
